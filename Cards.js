@@ -1,12 +1,22 @@
-import * as React from "react";
-import { Image, ScrollView, View, Text, StyleSheet } from "react-native";
+import React from "react";
+import {
+  Image,
+  ScrollView,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import Profile from "./Profile";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const details = [
   {
     id: 1,
     title: "T Shirt",
     image:
-      "https://i.insider.com/5e4706842dae5c5b6b43cf28?width=750&format=jpeg",
+      "https://static.massimodutti.net/3/photos/2019/I/0/2/p/0115/082/403//0115082403_1_1_3.jpg?t=1557495984871",
   },
   {
     id: 2,
@@ -44,25 +54,99 @@ const style = StyleSheet.create({
     padding: 10,
     fontSize: 20,
   },
+  detailImage: {
+    display: "flex",
+    width: "100%",
+    height: "100%",
+  },
 });
-
-function Cards() {
+function HomeScreen({ navigation }) {
   return (
     <ScrollView>
-      <View>
-        {details.map((items) => (
-          <View style={style.card} key={items.id}>
-            <Text style={style.text}>{items.title}</Text>
-            <Image
-              style={style.image}
-              source={{ uri: items.image }}
-              resizeMode="cover"
-            />
-          </View>
-        ))}
-      </View>
+      {details.map((items) => (
+        <TouchableOpacity
+          style={style.card}
+          key={items.id}
+          onPress={() => {
+            navigation.navigate("Details", {
+              image: items.image,
+              title: items.title,
+            });
+          }}
+        >
+          <Text style={style.text}>{items.title}</Text>
+          <Image
+            style={style.image}
+            source={{ uri: items.image }}
+            resizeMode="cover"
+          />
+        </TouchableOpacity>
+      ))}
     </ScrollView>
   );
 }
 
-export default Cards;
+function DetailsScreen({ route }) {
+  const { title, image } = route.params;
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      {/* <Text>Item: {title}</Text> */}
+      <Image
+        style={style.detailImage}
+        source={{ uri: image }}
+        resizeMode="cover"
+      />
+    </View>
+  );
+}
+
+const Stack = createStackNavigator();
+
+export default function Cards() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          options={{ headerShown: false }}
+          component={HomeScreen}
+        />
+        <Stack.Screen
+          name="Details"
+          options={{ headerShown: false }}
+          component={DetailsScreen}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+// function Cards() {
+//   return (
+//     <ScrollView>
+//       <View>
+//         <NavigationContainer>
+//           <Stack.Navigator>
+//             <Stack.Screen name="Home" component={HomeScreen} />
+//             <Stack.Screen name="Details" component={DetailsScreen} />
+//           </Stack.Navigator>
+//         </NavigationContainer>
+//         {details.map((items) => (
+//           <TouchableOpacity
+//             style={style.card}
+//             key={items.id}
+//             onPress={() => alert("Card")}
+//           >
+//             <Text style={style.text}>{items.title}</Text>
+//             <Image
+//               style={style.image}
+//               source={{ uri: items.image }}
+//               resizeMode="cover"
+//             />
+//           </TouchableOpacity>
+//         ))}
+//       </View>
+//     </ScrollView>
+//   );
+// }
+
+// export default Cards;

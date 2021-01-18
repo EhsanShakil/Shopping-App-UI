@@ -1,14 +1,15 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
+import Profile from "./Profile";
 
 const style = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     margin: 10,
   },
@@ -25,26 +26,17 @@ const style = StyleSheet.create({
 function AppBarTab() {
   return (
     <View style={style.container}>
-      <View>
+      <TouchableOpacity onPress={() => alert("Home")}>
         <Feather name="home" size={35} color="orange" />
         <Text>Home</Text>
-      </View>
-      <View
-        style={{
-          backgroundColor: "orange",
-          borderRadius: 50,
-          width: 80,
-          height: 80,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      </TouchableOpacity>
+      <TouchableOpacity style={style.basket}>
         <Entypo name="shopping-bag" size={50} color="white" />
-      </View>
-      <View>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => alert("Mine")}>
         <Ionicons name="person-outline" size={35} color="orange" />
         <Text>Mine</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }

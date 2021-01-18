@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
 const style = StyleSheet.create({
   header: {
@@ -19,13 +20,13 @@ const style = StyleSheet.create({
 function Header() {
   return (
     <View style={style.header}>
-      <View>
+      <TouchableOpacity>
         <Entypo name="dots-three-horizontal" size={30} color="black" />
-      </View>
+      </TouchableOpacity>
       <Text style={style.heading}>SHOP</Text>
-      <View>
+      <TouchableOpacity>
         <Entypo name="shopping-bag" size={30} color="orange" />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
