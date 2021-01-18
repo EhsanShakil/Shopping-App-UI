@@ -7,7 +7,6 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import Profile from "./Profile";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -90,7 +89,19 @@ function DetailsScreen({ route }) {
   const { title, image } = route.params;
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      {/* <Text>Item: {title}</Text> */}
+      <Text
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          position: "absolute",
+          left: 10,
+          top: 20,
+          zIndex: 1,
+        }}
+      >
+        Item: {title}
+      </Text>
       <Image
         style={style.detailImage}
         source={{ uri: image }}
