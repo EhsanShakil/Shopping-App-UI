@@ -120,33 +120,3 @@ export default function Cards() {
     </NavigationContainer>
   );
 }
-// function Cards() {
-//   return (
-//     <ScrollView>
-//       <View>
-//         <NavigationContainer>
-//           <Stack.Navigator>
-//             <Stack.Screen name="Home" component={HomeScreen} />
-//             <Stack.Screen name="Details" component={DetailsScreen} />
-//           </Stack.Navigator>
-//         </NavigationContainer>
-//         {details.map((items) => (
-//           <TouchableOpacity
-//             style={style.card}
-//             key={items.id}
-//             onPress={() => alert("Card")}
-//           >
-//             <Text style={style.text}>{items.title}</Text>
-//             <Image
-//               style={style.image}
-//               source={{ uri: items.image }}
-//               resizeMode="cover"
-//             />
-//           </TouchableOpacity>
-//         ))}
-//       </View>
-//     </ScrollView>
-//   );
-// }
-
-// export default Cards;
